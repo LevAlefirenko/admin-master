@@ -1,0 +1,3 @@
+<div class="bubble " [ngClass]="{'text-center': center, 'bubble_left': !center}">
+  <span class="bubble__text" *ngFor="let error of errors" [innerHTML]="error.message"></span>
+</div>

@@ -1,0 +1,9 @@
+.complaint {
+  &-field {
+    padding: 0 0 2rem 1rem;
+
+    &__name {
+      padding-bottom: 0.8rem;
+    }
+  }
+}

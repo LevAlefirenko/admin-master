@@ -1,0 +1,19 @@
+
+.suggestion-actions__action {
+  margin-right: 10px;
+  margin-bottom:10px;
+}
+
+.suggestion {
+  &__form {
+    margin-bottom: 20px;
+    max-width: 50%;
+  }
+}
+.suggestion-actions {
+  display: flex;
+}
+
+.details-header {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+.table {
+    width: 100%;
+    table-layout: fixed;
+
+    [class*='cdk-column-'] {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    &__cell {
+        &__action-link {
+            cursor: pointer;
+            padding-right: 3rem;
+        }
+    }
+}

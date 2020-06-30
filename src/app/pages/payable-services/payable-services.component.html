@@ -1,0 +1,14 @@
+<tab-component>
+    <div tab-header class="tab-header mat-h2">
+        {{ header }}
+    </div>
+    <div tab-body>
+        <app-data-panel
+                [dataSource]="dataSource"
+                [tableConfig]="tableConfig"
+                [disableFilterBar]="true"
+                [disablePagination]="true"
+                (actionButtonClick)="onActionButtonClick($event)"
+        ></app-data-panel>
+    </div>
+</tab-component>

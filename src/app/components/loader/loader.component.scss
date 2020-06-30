@@ -1,0 +1,19 @@
+@import '../../../common/styles/variables';
+
+.loader {
+  &-layout {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba($white, 0.7);
+    z-index: 100000;
+  }
+
+  &-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+}

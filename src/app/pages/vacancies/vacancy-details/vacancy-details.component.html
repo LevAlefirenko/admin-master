@@ -1,0 +1,51 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a
+                class="sidebar-link"
+                [routerLink]="returnToListLink.route"
+                routerLinkActive="sidebar-link_active"
+        >{{ returnToListLink.title }}</a
+        >
+    </div>
+    <div tab-body class="tab-body" *ngIf="vacancyData">
+        <div class="vacancy">
+            <div class="vacancy__header">
+                <h1 class="vacancy__heading">{{vacancyData.vacancy.title}}</h1>
+                <p class="vacancy__offer mat-h2">
+                    <span>{{vacancyData.vacancy.salaryFrom | currency: currencyCode}}</span>
+                    <span *ngIf="vacancyData.vacancy.salaryTo > 0">- {{vacancyData.vacancy.salaryTo | currency: currencyCode}}</span>
+                </p>
+                <a class="vacancy__company mat-h3"
+                   [routerLink]="goToEmployerLink"
+                   routerLinkActive="sidebar-link_active">{{vacancyData.employer.company}}</a>
+            </div>
+
+            <div class="vacancy__body">
+                {{vacancyData.vacancy.description}}
+            </div>
+            <p class="mat-body-strong vacancy__address">
+                {{vacancyData.vacancy.address}}
+            </p>
+            <ng-container *ngIf="isAtModeration(); else noModeration">
+                <button
+                        mat-button color="primary"
+                        (click)="changeVacancyStatus(status.ACTIVE, action.ACTIVATE)">
+                    {{actionTitle[action.ACTIVATE]}}
+                </button>
+                <button
+                        mat-button color="primary"
+                        (click)="changeVacancyStatus(status.BLOCKED, action.BLOCK)">
+                    {{actionTitle[action.BLOCK]}}
+                </button>
+            </ng-container>
+            <ng-template #noModeration>
+                <button
+                        mat-button color="primary"
+                        (click)="changeVacancyStatus(null, getAction())">
+                    {{actionTitle[getAction()]}}
+                </button>
+
+            </ng-template>
+        </div>
+    </div>
+</tab-component>

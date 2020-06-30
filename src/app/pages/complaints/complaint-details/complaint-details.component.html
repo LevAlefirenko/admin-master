@@ -1,0 +1,46 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a [routerLink]="returnToListLink.route">
+            {{ returnToListLink.title }}
+        </a>
+    </div>
+    <div tab-body class="tab-body" *ngIf="complaint">
+        <div class="complaint-header">
+            <h2 class="complaint-header__heading">Жалоба от {{complaint.date | date: dateFormat}}</h2>
+        </div>
+        <div class="complaint-field">
+            <div class="complaint-field__name">ФИО пользователя</div>
+            <div class="complaint-field__value">
+                <strong>{{complaint.origin.name}}</strong>
+            </div>
+        </div>
+        <div class="complaint-field">
+            <div class="complaint-field__name">Номер телефона</div>
+            <div class="complaint-field__value">
+                <strong>{{complaint.origin.phone | phoneMask}}</strong>
+            </div>
+        </div>
+        <div class="complaint-field">
+            <div class="complaint-field__name">Email</div>
+            <div class="complaint-field__value">
+                <strong>{{complaint.origin.email}}</strong>
+            </div>
+        </div>
+        <div class="complaint-field">
+            <div class="complaint-field__name">Жалоба на</div>
+            <div class="complaint-field__value">
+                <a [routerLink]="complaint.reason.href">{{complaint.reason.title}}</a>
+            </div>
+        </div>
+        <ng-container *ngIf="isArchived(); else isNotArchived">
+            <button mat-button color="primary" (click)="changeComplaintStatus(status.ACTIVE, action.ACTIVATE)">
+                {{actionTitle[action.ACTIVATE]}}
+            </button>
+        </ng-container>
+        <ng-template #isNotArchived>
+            <button mat-button color="primary" (click)="changeComplaintStatus(status.ARCHIVED, action.ARCHIVE)">
+                {{actionTitle[action.ARCHIVE]}}
+            </button>
+        </ng-template>
+    </div>
+</tab-component>

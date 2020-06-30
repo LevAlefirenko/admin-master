@@ -1,0 +1,59 @@
+<div class="layout">
+    <div class="layout__content">
+        <mat-card class="mat-body login-card"
+        >
+            <mat-card-title class="text-center">Авторизация</mat-card-title>
+            <bubble-error [errors]="errors"
+                          [center]="true"
+                          *ngIf="errors.length"
+                          ></bubble-error>
+            <form class="form" [formGroup]="form" (ngSubmit)="authorize()">
+                <mat-form-field class="form-field">
+                    <input
+                            matInput
+                            formControlName="email"
+                            placeholder="Логин"
+                    />
+                    <mat-error>
+                        <control-error
+                                [control]="email"
+                                [error]="email.errors?.required"
+                        >Пожалуйста, укажите логин.
+                        </control-error>
+                        <control-error
+                                [control]="email"
+                                [error]="email.errors?.minlength"
+                        >Минимальная длина логина - 5 символов.
+                        </control-error>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field">
+                    <input
+                            matInput
+                            formControlName="password"
+                            type="password"
+                            placeholder="Пароль"
+                    />
+                    <mat-error>
+                        <control-error
+                                [control]="password"
+                                [error]="password.errors?.required"
+                        >Пожалуйста, укажите пароль.
+                        </control-error>
+                        <control-error
+                                [control]="password"
+                                [error]="password.errors?.minlength"
+                        >Минимальная длина пароля - 10 символов.
+                        </control-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-card-actions class="text-center">
+                    <button mat-flat-button [disabled]="loading" type="submit" color="primary">
+                        Войти
+                    </button>
+                </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>

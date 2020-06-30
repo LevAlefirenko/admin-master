@@ -1,0 +1,8 @@
+<app-loader></app-loader>
+<div class="sticky-errors">
+    <app-sticky-error class="sticky-errors__error"
+                  *ngIf="hasServerErrors$ | async"
+                  (close)="onStickyClosed()"
+                  [message]="serverErrorMessage"></app-sticky-error>
+</div>
+<router-outlet></router-outlet>

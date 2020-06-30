@@ -1,0 +1,19 @@
+@import "../../../common/styles/variables";
+
+.bubble {
+  margin-bottom: 1rem;
+  position: relative;
+
+  &_left {
+    text-align: left;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    color: $warn-color;
+  }
+}

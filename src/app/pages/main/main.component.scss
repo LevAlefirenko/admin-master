@@ -1,0 +1,42 @@
+@import '../../../common/styles/variables';
+.sidebar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    &__body {
+        min-width: 30rem;
+        background: #f6f4f8;
+    }
+
+    &__title {
+        padding: 3rem 3rem 2rem 3rem;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .sidebar-links {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidebar-link {
+        color: $black;
+        line-height: 5rem;
+        white-space: nowrap;
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding: 0 3.5rem;
+
+        &_active {
+            color: $primary-color;
+        }
+    }
+}
+.mat-drawer-container {
+    background: white;
+}

@@ -1,0 +1,17 @@
+.payable-service {
+  &__period {
+    margin: 2rem 0 0 0;
+  }
+
+  &__actions {
+    padding-left: 15px;
+
+    & button {
+      margin-top: 2rem;
+
+      &:last-of-type {
+        margin-left: 1rem;
+      }
+    }
+  }
+}

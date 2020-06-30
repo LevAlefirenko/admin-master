@@ -1,0 +1,56 @@
+<form class="filter-panel flex"
+      *ngIf="!disableFilterBar"
+      [formGroup]="form">
+    <app-filter-buttons-group *ngIf="!disableFilterButtons"
+                              formControlName="filterButton"
+                              class="flex-item"
+                              [buttonsConfig]="filterButtonsGroupConfig"
+                              (click)="onFilterButtonClick()"
+    >
+    </app-filter-buttons-group>
+
+    <mat-form-field class="col-3" *ngIf="!disableDropDown">
+        <mat-label>{{dropDownConfig.labelText}}</mat-label>
+        <mat-select formControlName="dropdown">
+            <mat-option>{{defaultOptionText}}</mat-option>
+            <mat-option *ngFor="let option of (dropDownOptions$ | async)" [value]="option.value">
+                {{option.displayName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="search-group full-width flex">
+        <mat-form-field
+
+                class="full-width flex-item search-group__search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input type="text" matInput [placeholder]="searchPlaceholder"
+                   formControlName="searchText"/>
+        </mat-form-field>
+
+        <div class="flex-item">
+            <a mat-button mat-raised-button color="secondary" (click)="performSearch()">Найти</a>
+        </div>
+    </div>
+</form>
+
+<div *ngIf="dataLength === 0; "
+     class="no-data-message">
+    <p>{{noDataTitle}}</p>
+</div>
+<div [hidden]="dataLength === 0">
+    <app-table
+            [dataSource]="dataSource"
+            [tableConfig]="tableConfig"
+            (onSortChange)="onSortChange($event)"
+            (actionButtonClick)="onActionButtonClick($event)"
+    >
+    </app-table>
+    <app-paginator
+            *ngIf="!disablePagination"
+            [pageSize]="pageSize"
+            [itemsLength]="dataSource.dataLength$ | async"
+            (onPageNumberChange)="onPageNumberChange($event)"
+    >
+    </app-paginator>
+</div>

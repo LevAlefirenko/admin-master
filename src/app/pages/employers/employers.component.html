@@ -1,0 +1,16 @@
+<tab-component>
+    <div tab-header class="tab-header mat-h2">
+        {{ header }}
+    </div>
+    <div tab-body>
+        <app-data-panel
+            [dataSource]="dataSource"
+            [searchPlaceholder]="searchPlaceholder"
+            [filterButtonsGroupConfig]="filterButtonsGroupConfig"
+            [disableDropDown]="true"
+            [tableConfig]="tableConfig"
+            (actionButtonClick)="onActionButtonClick($event)"
+        ></app-data-panel>
+    </div>
+</tab-component>
+a

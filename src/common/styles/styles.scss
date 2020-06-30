@@ -1,0 +1,100 @@
+@import './variables';
+@import './tables';
+@import './theme.scss';
+@import '~bootstrap/dist/css/bootstrap-grid.css';
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    color: rgba($primary-color, 0.6);
+  }
+}
+
+.f-basis-100 {
+  flex-basis: 100%;
+}
+
+.sidebar__content {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.table {
+  table-layout: auto;
+}
+
+.button-group {
+  white-space: nowrap;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-item {
+  margin: 0 7.5px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.layout {
+  height: 100%;
+  font-size: 0;
+  text-align: center;
+  white-space: nowrap;
+
+  &:before {
+    content: ' ';
+    width: 0;
+    vertical-align: middle;
+    display: inline-block;
+    height: 100%;
+  }
+
+  &__content {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+}
+
+.form {
+  &-field {
+    width: 100%;
+    display: block;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.dialog-container > .mat-dialog-title {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}

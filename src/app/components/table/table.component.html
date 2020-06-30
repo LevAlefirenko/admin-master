@@ -1,0 +1,44 @@
+<table
+        mat-table
+        #table
+        [dataSource]="dataSource"
+        matSort
+        [matSortDisableClear]="true"
+        matSortDirection="asc"
+        class="table"
+>
+    <ng-container
+            *ngFor="let column of tableConfig.columns"
+            [matColumnDef]="column.name"
+    >
+        <ng-container *ngIf="!isActionsColumn(column); else actionColumnHeader">
+            <th
+                    mat-header-cell
+                    [mat-sort-header]="column.name"
+                    [disabled]="!column.sortable"
+                    *matHeaderCellDef
+            >
+                {{ column.headerTitle }}
+            </th>
+            <td mat-cell *matCellDef="let item">
+                {{ item[column.name] | dynamicType: column.cellType }}
+            </td>
+        </ng-container>
+        <ng-template #actionColumnHeader>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td class="table__cell text-right" mat-cell *matCellDef="let item">
+                <ng-container *ngFor="let action of item.actions">
+                    <app-action-button
+                            [action]="action"
+                            [item]="item"
+                            (actionButtonClick)="onActionButtonClick($event)">
+                    </app-action-button>
+
+                </ng-container>
+            </td>
+        </ng-template>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+    <tr mat-row *matRowDef="let item; columns: columnNames"></tr>
+</table>

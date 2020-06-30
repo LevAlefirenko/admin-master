@@ -1,0 +1,40 @@
+@import '../../../../common/styles/variables';
+
+.resume {
+  &__header {
+    margin-bottom: 5px;
+  }
+
+  &__salary {
+    margin-bottom: 0;
+  }
+
+  &__row-fields {
+    margin-bottom: 30px;
+  }
+
+  &__field-set {
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $gray;
+  }
+
+  &__field {
+    margin-bottom: 30px;
+
+    &__name {
+      margin-bottom: 5px;
+      margin-top: 15px;
+
+      &__heading {
+        margin-bottom: 15px;
+      }
+    }
+
+    &__value {
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

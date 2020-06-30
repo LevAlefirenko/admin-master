@@ -1,0 +1,109 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a [routerLink]="returnToListLink.route">
+            {{ returnToListLink.title }}
+        </a>
+    </div>
+    <div tab-body class="tab-body" *ngIf="employer">
+        <div class="employer-header">
+            <h2 class="employer-header__heading">{{employer.name}}</h2>
+
+            <button
+                    *ngIf="isBlocked()"
+                    mat-button color="primary" (click)="changeEmployerStatus(status.ACTIVE, action.ACTIVATE)">
+                {{actionTitle[action.ACTIVATE]}}
+            </button>
+
+            <button
+                    *ngIf="!isBlocked()"
+                    mat-button color="primary" (click)="changeEmployerStatus(status.BLOCKED, action.BLOCK)">
+                {{actionTitle[action.BLOCK]}}
+            </button>
+        </div>
+        <div class="employer-fields container-fluid">
+            <div class="row">
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">
+                            Наименование организации
+                        </div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.company}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">Номер телефона</div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.phone | phoneMask}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">
+                            Адрес организации
+                        </div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.companyAddress}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">Email</div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.email}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">Город</div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.city}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="employer-fields__field col-6">
+                    <div class="employer-field">
+                        <div class="employer-field__name">
+                            Дата регистрации
+                        </div>
+                        <div class="employer-field__value">
+                            <strong>{{employer.createdAt | date: dateFormat}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vacancies-list" *ngIf="vacancies">
+            <h2 class="vacancies-list__heading">Список вакансий ({{vacancies.length}})</h2>
+            <div class="container-fluid">
+                <div class="row">
+                    <div *ngFor="let vacancy of vacancies"
+                         class="vacancy vacancies-list__vacancy col-6">
+                        <h4 class="vacancy__heading">
+                            <a [routerLink]="vacancy.href"><strong>{{vacancy.title}}</strong></a>
+                        </h4>
+                        <div class="vacancy__payment">
+                            {{vacancy.salaryFrom | currency: currencyCode}}
+                            - {{vacancy.salaryTo | currency: currencyCode}}
+                        </div>
+                        <div class="vacancy__description">
+                            {{vacancy.description}}
+                        </div>
+                        <div class="vacancy__date">
+                            {{vacancy.createdAt | date: longMonthDateFormat}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</tab-component>

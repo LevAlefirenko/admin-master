@@ -1,0 +1,208 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a
+                class="sidebar-link"
+                [routerLink]="returnToListLink.route"
+                routerLinkActive="sidebar-link_active"
+        >{{ returnToListLink.title }}</a
+        >
+    </div>
+    <div tab-body class="tab-body" *ngIf="payableServiceItem">
+        <div class="payable-service">
+            <h1 class="payable-service__heading">{{payableServiceItem.name}}</h1>
+
+            <div [formGroup]="form" class="form payable-service__form">
+                <mat-form-field class="form-field col-8">
+                    <mat-label>Название услуги</mat-label>
+                    <input
+                            matInput
+                            formControlName="name"
+                    />
+                    <mat-error>
+                        <control-error
+                                [control]="nameControl"
+                                [error]="nameControl.errors?.required"
+                        >Пожалуйста, укажите название услуги.
+                        </control-error>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="form-field col-8">
+                    <mat-label>Описание</mat-label>
+                    <textarea
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            matInput
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            formControlName="description"
+                    ></textarea>
+                    <mat-error>
+                        <control-error
+                                [control]="descriptionControl"
+                                [error]="descriptionControl.errors?.required"
+                        >Пожалуйста, введите описание услуги.
+                        </control-error>
+                    </mat-error>
+                </mat-form-field>
+                <div class="row payable-service__period">
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Срок (дней)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="firstPeriodDays"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="firstPeriodDaysControl"
+                                    [error]="firstPeriodDaysControl.errors?.required"
+                            >Пожалуйста, укажите количество дней.
+                            </control-error>
+                            <control-error
+                                    [control]="firstPeriodDaysControl"
+                                    [error]="firstPeriodDaysControl.errors?.min"
+                            >Пожалуйста, укажите положительное количество дней.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Стоимость (руб)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="firstPeriodCost"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="firstPeriodCostControl"
+                                    [error]="firstPeriodCostControl.errors?.required"
+                            >Пожалуйста, укажите стоимость.
+                            </control-error>
+                            <control-error
+                                    [control]="firstPeriodCostControl"
+                                    [error]="firstPeriodCostControl.errors?.min"
+                            >Пожалуйста, укажите ненулевую стоимость.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row payable-service__period">
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Срок (дней)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="secondPeriodDays"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="secondPeriodDaysControl"
+                                    [error]="secondPeriodDaysControl.errors?.required"
+                            >Пожалуйста, укажите количество дней.
+                            </control-error>
+                            <control-error
+                                    [control]="secondPeriodDaysControl"
+                                    [error]="secondPeriodDaysControl.errors?.min"
+                            >Пожалуйста, укажите положительное количество дней.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Стоимость (руб)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="secondPeriodCost"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="secondPeriodCostControl"
+                                    [error]="secondPeriodCostControl.errors?.required"
+                            >Пожалуйста, укажите стоимость.
+                            </control-error>
+                            <control-error
+                                    [control]="secondPeriodCostControl"
+                                    [error]="secondPeriodCostControl.errors?.min"
+                            >Пожалуйста, укажите ненулевую стоимость.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row payable-service__period">
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Срок (дней)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="thirdPeriodDays"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="thirdPeriodDaysControl"
+                                    [error]="thirdPeriodDaysControl.errors?.required"
+                            >Пожалуйста, укажите количество дней.
+                            </control-error>
+                            <control-error
+                                    [control]="thirdPeriodDaysControl"
+                                    [error]="thirdPeriodDaysControl.errors?.min"
+                            >Пожалуйста, укажите положительное количество дней.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-field col-2">
+                        <mat-label>Стоимость (руб)</mat-label>
+                        <input
+                                matInput
+                                type="number"
+                                min="0"
+                                formControlName="thirdPeriodCost"
+                        />
+                        <mat-error>
+                            <control-error
+                                    [control]="thirdPeriodCostControl"
+                                    [error]="thirdPeriodCostControl.errors?.required"
+                            >Пожалуйста, укажите стоимость.
+                            </control-error>
+                            <control-error
+                                    [control]="thirdPeriodCostControl"
+                                    [error]="thirdPeriodCostControl.errors?.min"
+                            >Пожалуйста, укажите ненулевую стоимость.
+                            </control-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="payable-service__actions">
+                <button [disabled]="isFormDisabled()"
+                        mat-raised-button
+                        class="payable-service-actions__save"
+                        color="primary"
+                        (click)="updatePayableServiceItem()"
+                >
+                    Сохранить
+                </button>
+                <ng-container *ngIf="isBlocked(); else isNotBlocked">
+                    <button
+                            mat-button color="primary"
+                            (click)="changePayableServiceStatus(status.ACTIVE, action.ACTIVATE)">
+                        {{actionTitle[action.ACTIVATE]}}
+                    </button>
+                </ng-container>
+                <ng-template #isNotBlocked>
+                    <button
+                            mat-button color="primary"
+                            (click)="changePayableServiceStatus(status.BLOCKED, action.SWITCH_OFF)">
+                        {{actionTitle[action.SWITCH_OFF]}}
+                    </button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</tab-component>

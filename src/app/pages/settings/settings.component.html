@@ -1,0 +1,24 @@
+<tab-component>
+    <div tab-header class="tab-header ">
+        <h2 class="mat-h2">{{header}}</h2>
+
+        <mat-button-toggle-group>
+            <mat-button-toggle
+                    [checked]="isActive(['/settings/admins'])"
+                    (click)="navigate(['/settings/admins'])"
+            >Админы
+            </mat-button-toggle
+            >
+            <mat-button-toggle
+                    [checked]="isActive(['/settings/suggestions'])"
+                    (click)="navigate(['/settings/suggestions'])"
+            >Подсказки для вакансий
+            </mat-button-toggle
+            >
+        </mat-button-toggle-group>
+    </div>
+    <div tab-body>
+        <router-outlet></router-outlet>
+    </div>
+</tab-component>
+

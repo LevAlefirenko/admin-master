@@ -1,0 +1,43 @@
+<div class="details-header"><a
+        class="sidebar-link"
+        [routerLink]="returnToListLink.route"
+        routerLinkActive="sidebar-link_active"
+>{{ returnToListLink.title }}</a
+>
+</div>
+<div class="suggestion" *ngIf="form">
+
+    <form class="form suggestion__form" [formGroup]="form">
+        <mat-form-field class="form-field">
+            <mat-label>Изменить подсказку</mat-label>
+            <input
+                    matInput
+                    [formControl]="titleControl"
+                    placeholder="Введите подсказку"
+            />
+            <mat-error>
+                <control-error
+                        [control]="titleControl"
+                        [error]="titleControl.errors?.required"
+                >
+                    Укажите подсказку
+                </control-error>
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+    <div class="suggestion__actions suggestion-actions">
+        <button
+                class="suggestion-actions__action"
+                mat-raised-button
+                color="primary"
+                (click)="saveOrUpdate()"
+        >
+            Сохранить изменения
+        </button>
+
+        <button mat-button
+                *ngIf="isEditMode()"
+                class="suggestion-actions__action" color="error" (click)="remove()">Удалить подсказку</button>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a [routerLink]="returnToListLink.route">
+            {{ returnToListLink.title }}
+        </a>
+    </div>
+    <div tab-body class="tab-body" *ngIf="jobseeker">
+        <div class="jobseeker-header">
+            <h2 class="jobseeker-header__heading">{{jobseeker.name}}</h2>
+            <ng-container *ngIf="isBlocked(); else isNotBlocked">
+                <button
+                        mat-button color="primary" (click)="changeJobSeekerStatus(status.ACTIVE, action.ACTIVATE)">
+                    {{actionTitle[action.ACTIVATE]}}
+                </button>
+            </ng-container>
+            <ng-template #isNotBlocked>
+                <button
+                        mat-button color="primary" (click)="changeJobSeekerStatus(status.BLOCKED, action.BLOCK)">
+                    {{actionTitle[action.BLOCK]}}
+                </button>
+            </ng-template>
+        </div>
+        <div class="jobseeker-fields container-fluid">
+            <div class="row">
+                <div class="jobseeker-fields__field col-6">
+                    <div class="jobseeker-field">
+                        <div class="jobseeker-field__name">
+                            Город
+                        </div>
+                        <div class="jobseeker-field__value">
+                            <strong>{{jobseeker.address}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="jobseeker-fields__field col-6">
+                    <div class="jobseeker-field">
+                        <div class="jobseeker-field__name">Номер телефона</div>
+                        <div class="jobseeker-field__value">
+                            <strong>{{jobseeker.phone | phoneMask}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="jobseeker-fields__field col-6">
+                    <div class="jobseeker-field">
+                        <div class="jobseeker-field__name">
+                            Дата регистрации
+                        </div>
+                        <div class="jobseeker-field__value">
+                            <strong> {{jobseeker.createdAt | date: longMonthDateFormat}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="jobseeker-fields__field col-6">
+                    <div class="jobseeker-field">
+                        <div class="jobseeker-field__name">Email</div>
+                        <div class="jobseeker-field__value">
+                            <strong>{{jobseeker.email}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cvs-list" *ngIf="cvs">
+            <h2 class="cvs-list__heading">Список резюме ({{cvs.length}})</h2>
+            <div class="container-fluid">
+                <div class="row">
+                    <div *ngFor="let cv of cvs"
+                         class="cv cvs-list__cv col-6">
+                        <h4 class="cv__heading">
+                            <a [routerLink]="cv.href"><strong>{{cv.position}}</strong></a>
+                        </h4>
+                        <div class="cv__payment">
+                            {{cv.salaryFrom | currency: currencyCode}}
+                        </div>
+                        <div class="cv__date">
+                            {{cv.updated | date: longMonthDateFormat}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</tab-component>

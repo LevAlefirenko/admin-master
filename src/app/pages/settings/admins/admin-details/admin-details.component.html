@@ -1,0 +1,128 @@
+<div class="details-header"><a
+        class="sidebar-link"
+        [routerLink]="returnToListLink.route"
+        routerLinkActive="sidebar-link_active"
+>{{ returnToListLink.title }}</a
+>
+</div>
+<div class="profile" *ngIf="form">
+    <h1 class="profile__heading">{{admin?.login}}</h1>
+
+    <form class="form profile__form" [formGroup]="form">
+        <mat-form-field class="form-field">
+            <mat-label>Изменить логин</mat-label>
+            <input
+                    matInput
+                    [formControl]="login"
+                    placeholder="Введите логин"
+            />
+            <mat-error>
+                <control-error
+                        [control]="login"
+                        [error]="login.errors?.minlength"
+                >Минимальная длина логина - 5 символов.
+                </control-error>
+                <control-error
+                        [control]="login"
+                        [error]="login.errors?.required"
+                >
+                    Укажите логин
+                </control-error>
+                <control-error
+                        [control]="login"
+                        [error]="login.errors?.pattern"
+                >
+                    Указан неверный формат email.
+                </control-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Изменить пароль</mat-label>
+            <input
+                    matInput
+                    [formControl]="password"
+                    type="password"
+                    placeholder="Введите пароль"
+            />
+            <mat-error>
+                <control-error
+                        [control]="password"
+                        [error]="password.errors?.required"
+                >
+                    Укажите пароль
+                </control-error>
+                <control-error
+                        [control]="password"
+                        [error]="password.errors?.minlength"
+                >Минимальная длина пароля - 10 символов.
+                </control-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field">
+            <mat-label>Подтвердить пароль</mat-label>
+            <input
+                    matInput
+                    [formControl]="confirmPassword"
+                    type="password"
+                    placeholder="Введите повторно пароль"
+            />
+            <mat-error>
+                <control-error
+                        [control]="confirmPassword"
+                        [error]="confirmPassword.errors?.notEqual"
+                >Пароли не совпадают
+                </control-error>
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <div class="profile__access-rights access-rights">
+        <h2 class="access-rights__heading">Права</h2>
+        <div class="access-rights-table-wrapper">
+            <table class="access-rights-table">
+                <tr *ngFor="let sectionKey of permissionSectionsValues">
+                    <td class="access-rights-table__name">
+                        {{permissionSectionTitles[sectionKey]}}
+                    </td>
+                    <td>
+                        <mat-radio-group [name]="sectionKey"
+                                         [formControl]="getPermissionControl(sectionKey)">
+                            <mat-radio-button
+                                    class="radio-button"
+                                    [value]="permissions.READ">
+                                {{permissionsTitles[permissions.READ]}}
+                            </mat-radio-button>
+
+                            <mat-radio-button
+                                    class="radio-button"
+                                    [value]="permissions.WRITE">
+                                {{permissionsTitles[permissions.WRITE]}}
+                            </mat-radio-button>
+
+                            <mat-radio-button
+                                    class="radio-button"
+                                    [value]="permissions.NO">
+                                {{permissionsTitles[permissions.NO]}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="profile__actions profile-actions">
+        <button
+                class="profile-actions__action"
+                mat-raised-button
+                color="primary"
+                (click)="saveOrUpdate()"
+        >
+            Сохранить изменения
+        </button>
+
+        <button mat-button
+                class="profile-actions__action"
+                *ngIf="isEditMode()"
+                color="error" (click)="remove()">Удалить администратора
+        </button>
+    </div>
+</div>

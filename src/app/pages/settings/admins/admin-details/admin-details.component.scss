@@ -1,0 +1,43 @@
+.access-rights-table {
+  margin-left: -20px;
+  margin-top: -20px;
+  border-collapse: separate;
+  border-spacing: 20px;
+
+  &__name {
+    padding-right: 20px;
+  }
+}
+
+.profile {
+  &__heading {
+    margin-bottom: 32px;
+  }
+
+  &__form {
+    max-width: 50%;
+  }
+
+  &__form,
+  &__access-rights {
+    margin-bottom: 20px;
+  }
+}
+
+.profile-actions__action {
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+}
+
+.radio-button {
+  margin-right: 15px;
+}
+
+.profile-actions {
+  display: flex;
+}
+
+.details-header {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,40 @@
+@import '../../../../common/styles/variables';
+
+.employer-fields {
+}
+
+.employer-field__name {
+    margin-bottom: 5px;
+}
+
+.employer-fields__field {
+    margin-bottom: 30px;
+}
+.vacancies-list__vacancy {
+    margin-bottom: 30px;
+}
+
+.vacancy {
+    &__heading {
+        margin-bottom: 5px;
+    }
+
+    &__payment {
+    }
+
+    &__description {
+        line-height: 1.4;
+        margin-top: 15px;
+    }
+
+    &__date {
+        margin-top: 10px;
+    }
+}
+
+.employer-header {
+    margin-bottom: 20px;
+    &__heading {
+        margin-bottom: 0;
+    }
+}

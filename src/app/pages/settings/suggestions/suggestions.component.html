@@ -1,0 +1,15 @@
+<div class="flex justify-content-between align-baseline">
+    <h3>{{ header }}</h3>
+    <button mat-button
+            color="primary" (click)="create()">Добавить подсказку
+    </button>
+</div>
+
+<app-data-panel
+        [dataSource]="dataSource"
+        [tableConfig]="tableConfig"
+        [disableFilterBar]="true"
+        [disablePagination]="true"
+        (actionButtonClick)="onActionButtonClick($event)"
+></app-data-panel>
+

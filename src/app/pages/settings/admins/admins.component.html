@@ -1,0 +1,14 @@
+<div class="flex justify-content-between align-baseline">
+    <h3>{{ header }}</h3>
+    <button mat-button
+            color="primary" (click)="create()">Добавить администратора
+    </button>
+</div>
+
+<app-data-panel
+        [disableFilterBar]="true"
+        [dataSource]="dataSource"
+        [tableConfig]="tableConfig"
+        (actionButtonClick)="onActionButtonClick($event)"
+></app-data-panel>
+

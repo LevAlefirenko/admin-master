@@ -1,0 +1,31 @@
+@import "../../../common/styles/variables";
+
+:host {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+}
+
+.error {
+  &-container {
+    display: flex;
+    background: $warn-color;
+    min-height: 7rem;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.15);
+
+    &__text {
+      font-weight: 500;
+      color: white;
+      font-size: 1.4rem;
+      letter-spacing: 0.4px;
+    }
+  }
+
+  &-icon {
+    color: $white;
+    cursor: pointer;
+  }
+}

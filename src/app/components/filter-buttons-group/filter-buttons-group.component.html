@@ -1,0 +1,10 @@
+<div class="button-group">
+    <mat-button-toggle-group>
+        <mat-button-toggle
+            *ngFor="let button of buttonsConfig.buttons"
+            [checked]="button.isActive"
+            (click)="onClick(button)"
+            >{{ button.text }}</mat-button-toggle
+        >
+    </mat-button-toggle-group>
+</div>

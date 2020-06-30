@@ -1,0 +1,121 @@
+<tab-component>
+    <div tab-header class="tab-header">
+        <a
+                class="sidebar-link"
+                [routerLink]="returnToListLink.route"
+                routerLinkActive="sidebar-link_active"
+        >{{ returnToListLink.title }}</a>
+    </div>
+    <div tab-body class="tab-body" *ngIf="extendedCV">
+        <div class="container">
+            <div class="row resume__row-fields">
+                <div class="col-3">
+                    <img image [imageSrc]="extendedCV.jobseeker.avatarUrl"
+                         placeholderSrc="../../../../assets/no-avatar.jpg"/>
+                </div>
+                <div class="col-4">
+                    <div class="resume__field">
+                        <div class="resume__header mat-headline">
+                            {{extendedCV.cv.position}}
+                        </div>
+                        <div class="resume__salary mat-h2">
+                            <p class="vacancy__offer mat-h2">
+                                <span>{{extendedCV.cv.salaryFrom | currency: currencyCode}}</span>
+                                <span *ngIf="extendedCV.cv.salaryTo > 0">- {{extendedCV.cv.salaryTo | currency: currencyCode}}</span>
+                            </p></div>
+                    </div>
+                    <div class="resume__field">
+                        <div class="resume__field__name mat-h3">
+                            {{extendedCV.jobseeker.name}}
+                        </div>
+                        <div class="resume__field__value">
+                            {{jobSeekerAge}}, {{extendedCV.jobseeker.citizenship}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    Опыт работы
+                </div>
+                <div class="resume__field__value"
+                     *ngFor="let experienceItem of extendedCV.cv.experience">
+                    <p>{{experienceItem.position}}</p>
+                    <p>{{experienceItem.company}}, {{experienceItem.city}}</p>
+                    <p>{{experienceItem.startDate}} - {{experienceItem.endDate}}</p>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    Тип занятости
+                </div>
+                <div class="resume__field__value">
+                    <p>{{extendedCV.cv.employmentType}}</p>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    График работы
+                </div>
+                <div class="resume__field__value">
+                    <p>{{extendedCV.cv.schedule}}</p>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    Образование
+                </div>
+                <div class="resume__field__value">
+                    <p>
+                        {{extendedCV.cv.education}}, {{extendedCV.cv.educationPlaceName}}
+                    </p>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div>
+                    <div class="resume__field__name mat-body-strong">Языки</div>
+                    <div class="resume__field__value">
+                        <p>{{extendedCV.cv.languages}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    Документы
+                </div>
+                <div class="resume__field__value" *ngFor="let doc of extendedCV.cv.documents">
+                    <p>{{doc}}</p>
+                </div>
+            </div>
+            <div class="resume__field-set col-8">
+                <div class="resume__field__name mat-body-strong">
+                    О себе
+                </div>
+                <div class="resume__field__value">
+                    <p>
+                        {{extendedCV.cv.about}}
+                    </p>
+                </div>
+            </div>
+            <ng-container *ngIf="isAtModeration(); else noModeration">
+                <button
+                        mat-button color="primary"
+                        (click)="changeCvStatus(status.ACTIVE, action.ACTIVATE)">
+                    {{actionTitle[action.ACTIVATE]}}
+                </button>
+                <button
+                        mat-button color="primary"
+                        (click)="changeCvStatus(status.BLOCKED, action.BLOCK)">
+                    {{actionTitle[action.BLOCK]}}
+                </button>
+            </ng-container>
+            <ng-template #noModeration>
+                <button
+                        mat-button color="primary"
+                        (click)="changeCvStatus(null, getAction())">
+                    {{actionTitle[getAction()]}}
+                </button>
+
+            </ng-template>
+        </div>
+    </div>
+</tab-component>
